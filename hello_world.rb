@@ -1,6 +1,6 @@
 require 'tk'
 
-root = TkRoot.new(title: "Hello, World!")
+root = TkRoot.new(title: "Hello, World!", padx: 200, pady: 200)
 
 TkLabel.new(root) do
   text "Hello, World!"
