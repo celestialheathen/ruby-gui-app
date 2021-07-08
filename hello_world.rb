@@ -4,7 +4,10 @@ root = TkRoot.new(title: "Hello, World!", padx: 250, pady: 250)
 
 display = TkLabel.new(root) do
   text "helllloo"
-  pack { padx 15; pady 15; side 'top' }
+  height 2
+  width 60
+  background "gray"
+  pack
 end 
 
 
