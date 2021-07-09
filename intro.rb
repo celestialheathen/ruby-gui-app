@@ -22,5 +22,6 @@ my_checkbox = TkCheckButton.new(root) do
   pack()
 end 
 
+my_label.configure('text', 'A new label')
 
 Tk.mainloop
