@@ -5,7 +5,7 @@ root = TkRoot.new(title: "Ruby Calculator")
 display = TkLabel.new(root) do
   text ""
   height 2
-  width 50
+  width 32
   background "gray"
   grid(row: 0, column: 0, columnspan: 4)
 end 
@@ -109,7 +109,7 @@ plus_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
-  command(lambda {temp_value = current_value; display.configure('text', '')})
+  command(lambda {temp_value = current_value; current_value = ''; display.configure('text', '')})
 end 
 
 negative_btn = TkButton.new(root) do 
@@ -118,7 +118,7 @@ negative_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
-  command(lambda {display.configure('text', current_value.to_i * -1 )})
+  command(lambda {display.configure('text', current_value = current_value.to_i * -1 )})
 end 
 zero_btn = TkButton.new(root) do 
   text("0")
@@ -155,6 +155,9 @@ divide_btn = TkButton.new(root) do
 end 
 clear_btn = TkButton.new(root) do
   text("Clear")
+  borderwidth 1
+  padx 30
+  pady 25
   command(lambda {display.configure('text', ''); current_value = ''})
   grid(row: 5, column: 3)
 end 
