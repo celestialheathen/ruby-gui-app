@@ -11,6 +11,7 @@ display = TkLabel.new(root) do
 end 
 
 current_value = display.cget('text')
+temp_value = nil
 
 seven_btn = TkButton.new(root) do 
   text("7")
@@ -108,7 +109,7 @@ plus_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
-  command()
+  command(lambda {temp_value = current_value; display.configure('text', '')})
 end 
 
 negative_btn = TkButton.new(root) do 
@@ -117,7 +118,7 @@ negative_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
-  command(lambda {display.configure('text', current_value * -1)})
+  command(lambda {display.configure('text', current_value.to_i * -1 )})
 end 
 zero_btn = TkButton.new(root) do 
   text("0")
@@ -141,7 +142,7 @@ equal_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
-  command()
+  command(lambda {result = current_value.to_i + temp_value.to_i; display.configure('text', result)})
 end 
 
 divide_btn = TkButton.new(root) do 
@@ -154,7 +155,7 @@ divide_btn = TkButton.new(root) do
 end 
 clear_btn = TkButton.new(root) do
   text("Clear")
-  command(lambda {display.configure('text', '')})
+  command(lambda {display.configure('text', ''); current_value = ''})
   grid(row: 5, column: 3)
 end 
 
