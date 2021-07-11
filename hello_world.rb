@@ -45,7 +45,7 @@ multiply_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
-  command()
+  command(lambda {temp_value = current_value; current_value = ''; display.configure('text', ''); action = OPERATION[:multiplication]})
 end 
 
 four_btn = TkButton.new(root) do 
@@ -78,7 +78,7 @@ minus_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
-  command()
+  command(lambda {temp_value = current_value; current_value = ''; display.configure('text', ''); action = OPERATION[:subtraction]})
 end 
 
 one_btn = TkButton.new(root) do 
@@ -120,7 +120,7 @@ negative_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
-  command(lambda {display.configure('text', current_value = current_value.to_i * -1 )})
+  command(lambda {display.configure('text', current_value = current_value.to_f * -1 )})
 end 
 zero_btn = TkButton.new(root) do 
   text("0")
@@ -136,7 +136,7 @@ dot_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
-  command(lambda {display.configure('text', '.')})
+  command(lambda {display.configure('text', current_value.concat('.'))})
 end 
 equal_btn = TkButton.new(root) do 
   text("=")
@@ -148,7 +148,16 @@ equal_btn = TkButton.new(root) do
     lambda {
       case action
         when "addition"
-          result = current_value.to_i + temp_value.to_i
+          result = temp_value.to_f + current_value.to_f
+          display.configure('text', result)
+        when "subtraction"
+          result = temp_value.to_f - current_value.to_f 
+          display.configure('text', result)
+        when "multiplication"
+          result = temp_value.to_f * current_value.to_f
+          display.configure('text', result)
+        when "division"
+          result = temp_value.to_f / current_value.to_f
           display.configure('text', result)
       end 
     })
@@ -160,7 +169,7 @@ divide_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
-  command()
+  command(lambda {temp_value = current_value; current_value = ''; display.configure('text', ''); action = OPERATION[:division]})
 end 
 clear_btn = TkButton.new(root) do
   text("Clear")
