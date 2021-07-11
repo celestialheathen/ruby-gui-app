@@ -15,7 +15,7 @@ my_btn = TkButton.new(root) do
   foreground "blue"
   padx 10
   pady 10
-  command ( ->() {my_btn.configure('text', my_btn.cget('text').to_i + 1)})
+  command (-> {my_btn.configure('text', my_btn.cget('text').to_i + 1)})
   pack()
 end 
 

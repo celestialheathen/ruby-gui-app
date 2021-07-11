@@ -12,6 +12,8 @@ end
 
 current_value = display.cget('text')
 temp_value = nil
+OPERATION = {addition: "addition", subtraction: "subtraction", multiplication: "multiplication", division: "division"}
+action = nil
 
 seven_btn = TkButton.new(root) do 
   text("7")
@@ -109,7 +111,7 @@ plus_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
-  command(lambda {temp_value = current_value; current_value = ''; display.configure('text', '')})
+  command(lambda {temp_value = current_value; current_value = ''; display.configure('text', ''); action = OPERATION[:addition]})
 end 
 
 negative_btn = TkButton.new(root) do 
@@ -142,7 +144,14 @@ equal_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
-  command(lambda {result = current_value.to_i + temp_value.to_i; display.configure('text', result)})
+  command(
+    lambda {
+      case action
+        when "addition"
+          result = current_value.to_i + temp_value.to_i
+          display.configure('text', result)
+      end 
+    })
 end 
 
 divide_btn = TkButton.new(root) do 
