@@ -20,18 +20,21 @@ container = TkLabel.new(root) do
   grid(row: 0, column: 0, columnspan: 3)
 end 
 
+label = TkLabel.new(root) do
+  text "Image 1 of 5"
+  pady 20
+  grid(row: 1, column: 1)
+end 
+
 back_btn = TkButton.new(root) do 
   text "<"
   padx 15
   pady 15
   grid(row: 1, column: 0)
-  command( lambda { container.configure('image', images_array[current_index -= 1]) })
-end 
-
-label = TkLabel.new(root) do
-  text "Image 1 of 5"
-  pady 20
-  grid(row: 1, column: 1)
+  command( lambda { 
+    container.configure('image', images_array[current_index -= 1])
+    label.configure('text', "Image #{current_index - 1} of #{images_array.length}")
+   })
 end 
 
 next_btn = TkButton.new(root) do 
