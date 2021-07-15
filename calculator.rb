@@ -11,6 +11,9 @@ display = TkLabel.new(root) do
 end 
 
 current_value = display.cget('text')
+temp_value = nil
+OPERATION = {addition: "addition", subtraction: "subtraction", multiplication: "multiplication", division: "division"}
+action = nil
 
 seven_btn = TkButton.new(root) do 
   text("7")
@@ -42,6 +45,7 @@ multiply_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
+  command(lambda {temp_value = current_value; display.configure('text', current_value = ''); action = OPERATION[:multiplication]})
 end 
 
 four_btn = TkButton.new(root) do 
@@ -74,6 +78,7 @@ minus_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
+  command(lambda {temp_value = current_value; display.configure('text', current_value = ''); action = OPERATION[:subtraction]})
 end 
 
 one_btn = TkButton.new(root) do 
@@ -106,6 +111,7 @@ plus_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
+  command(lambda {temp_value = current_value; display.configure('text', current_value = ''); action = OPERATION[:addition]})
 end 
 
 negative_btn = TkButton.new(root) do 
@@ -114,6 +120,7 @@ negative_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
+  command(lambda {display.configure('text', current_value = current_value.to_f * -1 )})
 end 
 zero_btn = TkButton.new(root) do 
   text("0")
@@ -129,6 +136,9 @@ dot_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
+  command(lambda {
+    display.configure('text', current_value.concat('.')) unless current_value.include?('.')
+  })
 end 
 equal_btn = TkButton.new(root) do 
   text("=")
@@ -144,6 +154,7 @@ divide_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
+  command(lambda {temp_value = current_value; display.configure('text', current_value = ''); action = OPERATION[:division]})
 end 
 clear_btn = TkButton.new(root) do
   text("Clear")
