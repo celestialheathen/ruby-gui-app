@@ -176,7 +176,7 @@ clear_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
-  command(lambda {display.configure('text', ''); current_value = ''})
+  command(lambda {display.configure('text', current_value = '')})
   grid(row: 5, column: 3)
 end 
 
