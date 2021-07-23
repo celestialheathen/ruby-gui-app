@@ -16,7 +16,6 @@ container = TkLabel.new(root) do
   image images_array[current_index] 
   padx 250
   pady 250
-  pady 250
   grid(row: 0, column: 0, columnspan: 3)
 end 
 
@@ -31,7 +30,14 @@ back_btn = TkButton.new(root) do
   padx 15
   pady 15
   grid(row: 1, column: 0)
-  command
+  command( lambda { 
+    if current_index == 0 
+      return
+    else 
+      container.configure('image', images_array[current_index -= 1])
+      label.configure('text', "Image #{current_index + 1} of #{images_array.length}")
+    end 
+   })
 end 
 
 next_btn = TkButton.new(root) do 
@@ -39,7 +45,14 @@ next_btn = TkButton.new(root) do
   padx 15
   pady 15
   grid(row: 1, column: 2)
-  command
+  command( lambda {
+    if current_index == images_array.length - 1 
+      return
+    else  
+      container.configure('image', images_array[current_index += 1]) 
+      label.configure('text', "Image #{current_index + 1} of #{images_array.length}")
+    end 
+  })
 end 
 
 Tk.mainloop 
