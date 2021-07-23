@@ -146,6 +146,23 @@ equal_btn = TkButton.new(root) do
   borderwidth 1
   padx 30
   pady 25
+  command(
+    lambda {
+      case action
+        when "addition"
+          current_value = temp_value.to_f + current_value.to_f
+          display.configure('text', current_value)
+        when "subtraction"
+          current_value = temp_value.to_f - current_value.to_f 
+          display.configure('text', current_value)
+        when "multiplication"
+          current_value = temp_value.to_f * current_value.to_f
+          display.configure('text', current_value)
+        when "division"
+          current_value = temp_value.to_f / current_value.to_f
+          display.configure('text', current_value)
+      end 
+    })
 end 
 
 divide_btn = TkButton.new(root) do 

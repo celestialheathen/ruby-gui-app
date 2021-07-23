@@ -150,17 +150,17 @@ equal_btn = TkButton.new(root) do
     lambda {
       case action
         when "addition"
-          result = temp_value.to_f + current_value.to_f
-          display.configure('text', result)
+          current_value = temp_value.to_f + current_value.to_f
+          display.configure('text', current_value)
         when "subtraction"
-          result = temp_value.to_f - current_value.to_f 
-          display.configure('text', result)
+          current_value = temp_value.to_f - current_value.to_f 
+          display.configure('text', current_value)
         when "multiplication"
-          result = temp_value.to_f * current_value.to_f
-          display.configure('text', result)
+          current_value = temp_value.to_f * current_value.to_f
+          display.configure('text', current_value)
         when "division"
-          result = temp_value.to_f / current_value.to_f
-          display.configure('text', result)
+          current_value = temp_value.to_f / current_value.to_f
+          display.configure('text', current_value)
       end 
     })
 end 
